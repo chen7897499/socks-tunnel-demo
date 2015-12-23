@@ -62,12 +62,11 @@ module LocalServer
     # | 1  |   1    |
     # +----+--------+
     def greeting
-      ver, nmethods = @data.unpack("CC")
+      ver = @data.unpack("C")
       clear_data
       if ver == 5
         send_data "\x05\x00"  # NO AUTHENTICATION REQUIRED
       else
-        puts "Unsupported version"
         send_data "\x05\xFF"  # NO ACCEPTABLE METHODS
       end
       Fiber.yield
