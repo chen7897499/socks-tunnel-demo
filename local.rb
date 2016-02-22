@@ -1,4 +1,5 @@
 require "eventmachine"
+require "ipaddr"
 
 LOCAL_SERVER_HOST = "127.0.0.1"
 LOCAL_SERVER_PORT = "8081"
@@ -62,7 +63,7 @@ module LocalServer
     # | 1  |   1    |
     # +----+--------+
     def greeting
-      ver = @data.unpack("C")
+      ver = @data.unpack("C").first
       clear_data
       if ver == 5
         send_data "\x05\x00"  # NO AUTHENTICATION REQUIRED
