@@ -138,7 +138,7 @@ module LocalServer
 
     def panic(reply_type)
       send_data reply_data(reply_type)
-      Fiber.yield true
+      Fiber.yield
     end
 end
 
